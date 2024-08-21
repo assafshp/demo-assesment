@@ -120,6 +120,26 @@ const questions = [
     // }
 ];
 
+function adjustLayout() {
+    const screen = document.querySelector('.screen:not(.hidden)');
+    if (screen) {
+        const screenHeight = screen.offsetHeight;
+        const windowHeight = window.innerHeight;
+        if (screenHeight > windowHeight) {
+            document.body.style.height = 'auto';
+            document.body.style.overflow = 'auto';
+        } else {
+            document.body.style.height = '100vh';
+            document.body.style.overflow = 'hidden';
+        }
+    }
+}
+
+// Call this function when the page loads, on resize, and after showing results
+window.addEventListener('load', adjustLayout);
+window.addEventListener('resize', adjustLayout);
+
+
 welcomeForm.addEventListener('submit', (e) => {
     e.preventDefault();
     welcomeScreen.classList.add('hidden');
@@ -155,6 +175,7 @@ function displayQuestion() {
     });
 
     nextButton.disabled = true;
+    setTimeout(adjustLayout, 0);
 }
 
 function createParticle(x, y, color) {
@@ -316,6 +337,9 @@ function showResults() {
     // Start fireworks immediately
     startFireworks();
     sendResultsToAPI();
+    
+    setTimeout(adjustLayout, 0);
+    window.scrollTo(0, 0);
 }
 
 function calculateScore() {
