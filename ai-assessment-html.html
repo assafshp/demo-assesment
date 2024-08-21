@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Assessment Survey</title>
+    <link rel="stylesheet" href="./ai-assessment-css.css">
+</head>
+<body>
+    <div id="welcome-screen" class="screen">
+        <h1>AI Assessment Survey</h1>
+        <form id="welcome-form">
+            <input type="text" id="full-name" placeholder="Full Name" required>
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="text" id="role" placeholder="Role" required>
+            <button type="submit" id="start-button">Start Assessment</button>
+        </form>
+    </div>
+
+    <div id="assessment-screen" class="screen hidden">
+        <div id="assessment-header">
+            <span id="question-counter">Question 1 of 9</span>
+            <span id="timer">00:00</span>
+        </div>
+        <h2 id="question-title"></h2>
+        <div id="answer-options"></div>
+        <button id="next-button" disabled>Next</button>
+    </div>
+
+    <div id="results-screen" class="screen hidden">
+        <h2>Assessment Results</h2>
+        <div id="total-points"></div>
+        <div id="classification-level"></div>
+        <div id="points-breakdown"></div>
+        <div id="time-taken"></div>
+        <div id="fireworks"></div>
+    </div>
+
+    <script src="./ai-assessment-js-complete.js"></script>
+</body>
+</html>

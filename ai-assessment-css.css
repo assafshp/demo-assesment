@@ -1,0 +1,256 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f2f2f7 0%, #d1d1d6 100%);
+}
+
+.screen {
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    width: 90%;
+    max-width: 600px;
+}
+
+h1, h2, h3, h4 {
+    color: #1d1d1f;
+    text-align: center;
+}
+
+input, button {
+    display: block;
+    width: 100%;
+    margin: 1rem 0;
+    padding: 0.8rem;
+    border: 1px solid #d2d2d7;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+input:focus {
+    outline: none;
+    border-color: #0071e3;
+    box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.1);
+}
+
+button {
+    background-color: #0071e3;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #0077ed;
+}
+
+button:disabled {
+    background-color: #a1a1a6;
+    cursor: not-allowed;
+}
+
+#assessment-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    color: #1d1d1f;
+}
+
+.answer-option {
+    background-color: #f5f5f7;
+    border: 2px solid #d2d2d7;
+    border-radius: 10px;
+    padding: 1rem;
+    margin: 0.8rem 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: left;
+    color: #1d1d1f;
+}
+
+.answer-option:hover, .answer-option.selected {
+    background-color: #e8e8ed;
+    border-color: #0071e3;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Question transition animation */
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+#assessment-screen:not(.hidden) {
+    animation: fadeInOut 0.5s ease-out;
+}
+
+/* Results screen styles */
+body.results-shown {
+    background: linear-gradient(135deg, #1c1c1e 0%, #2c2c2e 100%);
+}
+
+body.results-shown .screen {
+    background-color: #2c2c2e;
+    color: #ffffff;
+}
+
+#results-screen {
+    text-align: center;
+}
+
+#results-screen h1, #results-screen h2, #results-screen h3, #results-screen h4, #results-screen p {
+    color: #ffffff;
+}
+
+#total-points, #classification-level, #time-taken {
+    margin: 1rem 0;
+}
+
+#classification-level {
+    font-size: 2rem;
+    color: #0071e3;
+}
+
+#points-breakdown {
+    margin: 2rem 0;
+    text-align: center;
+}
+
+#points-breakdown table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #ffffff;
+}
+
+#points-breakdown th, #points-breakdown td {
+    padding: 0.5rem;
+    border: 1px solid #ffffff;
+}
+
+#fireworks {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.firework {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    animation: explode 1s ease-out forwards;
+}
+
+.fireworks {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    animation: explode 1s ease-out forwards;
+}
+
+@keyframes explode {
+    0% {
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--tx), var(--ty));
+        opacity: 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .screen {
+        width: 95%;
+        padding: 1.5rem;
+    }
+}
+
+/* ... (keep the existing CSS) ... */
+
+#fireworks {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.firework {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    transform-origin: center;
+    animation: firework-explode 1.5s ease-out forwards;
+}
+
+.firework::before,
+.firework::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    animation: firework-particle 1s ease-out forwards;
+}
+
+.firework::before {
+    transform: translateX(-50%) translateY(-50%) rotate(45deg);
+}
+
+.firework::after {
+    transform: translateX(-50%) translateY(-50%) rotate(-45deg);
+}
+
+@keyframes firework-explode {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+
+@keyframes firework-particle {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--tx), var(--ty)) scale(0);
+        opacity: 0;
+    }
+}
+
+.fireworks {
